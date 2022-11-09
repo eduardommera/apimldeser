@@ -7,3 +7,4 @@ config
 pyodbc
 pywhatkit
 pickle5
+sklearn
