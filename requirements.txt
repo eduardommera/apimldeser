@@ -6,5 +6,4 @@ scikit-learn
 numpy
 python-multipart
 pandas
-csv
 codecs
