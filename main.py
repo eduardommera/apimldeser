@@ -10,14 +10,18 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import pickle
 import json
+import pandas as pd
 
 
 
 
 app = FastAPI()
 
-
-    
+ides=[]
+file=[
+      
+      
+      ]
 @app.post('/csv')
 
 
@@ -26,8 +30,8 @@ async def root(file: UploadFile = File(...)):
 
 
 
-    ides= pd.read_csv(file,encoding='latin-1')
-    ides.rename(columns = {'DescRIpcion Asignatura':'d_asignatura'}, inplace = True)
+ides= pd.read_csv(file,encoding='latin-1')
+ides.rename(columns = {'DescRIpcion Asignatura':'d_asignatura'}, inplace = True)
 ides.rename(columns = {'DescRIpcionEstado':'estado'}, inplace = True)
 ides.rename(columns = {'EstadoCalificacion':'e_calificacion'}, inplace = True)
 ides.rename(columns = {'Nota':'nota'}, inplace = True)
