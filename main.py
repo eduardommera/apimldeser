@@ -100,14 +100,13 @@ def deser_pred(input_parameters :model_input):
         return 'el alumno se titula'
     
     
+@app.post('/')
 
 
+async def root(file: UploadFile = File(...)):
+    return{"file_name":file.filename}
 
-@app.post("/uploadcsv")
-def upload_csv(csv_file: UploadFile = File(...)):
-    input_df=pd.read_csv(csv_file.file)
     
-    input_df = deser_model.predict([input_df])
     
     
     
