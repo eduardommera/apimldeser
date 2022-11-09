@@ -18,11 +18,10 @@ import pandas as pd
 app = FastAPI()
 
 ides=[]
-file=[
-      
-      
-      ]
-@app.post('/csv')
+#file=[]
+
+
+@app.post('/')
 
 
 async def root(file: UploadFile = File(...)):
