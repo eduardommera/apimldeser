@@ -5,7 +5,7 @@ Created on Fri Nov  4 19:17:10 2022
 @author: Eduardo
 """
 
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import pickle
@@ -91,11 +91,3 @@ def deser_pred(input_parameters :model_input):
         return 'el alumno no se titula'
     else:
         return 'el alumno se titula'
-
-    
-    
-#@app.post('/')
-
-
-#async def root(file: UploadFile = File(...)):
-#    return{"file_name":file.filename}
