@@ -7,4 +7,3 @@ config
 pyodbc
 pywhatkit
 pickle5
-json
