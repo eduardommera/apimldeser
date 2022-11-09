@@ -4,12 +4,19 @@ Created on Fri Nov  4 19:17:10 2022
 
 @author: Eduardo
 """
-
-from fastapi import FastAPI
+#original solo hasta FastAPI
+from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import pickle
 import json
+
+import pandas as pd
+import uvicorn
+import py_functions
+import config
+import pyodbc
+import pywhatkit
 
 app = FastAPI()
 
@@ -91,3 +98,18 @@ def deser_pred(input_parameters :model_input):
         return 'el alumno no se titula'
     else:
         return 'el alumno se titula'
+    
+    
+
+
+
+@app.post("/uploadcsv")
+def upload_csv(csv_file: UploadFile = File(...)):
+    input_df=pd.read_csv(csv_file.file)
+    
+    input_df = deser_model.predict([input_df])
+    
+    
+    
+    
+    
