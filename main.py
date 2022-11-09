@@ -11,13 +11,6 @@ from pydantic import BaseModel
 import pickle
 import json
 
-import pandas as pd
-import uvicorn
-import py_functions
-import config
-import pyodbc
-import pywhatkit
-
 app = FastAPI()
 
 origins = ["*"]
