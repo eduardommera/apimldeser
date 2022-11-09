@@ -93,11 +93,11 @@ def deser_pred(input_parameters :model_input):
         return 'el alumno se titula'
     
     
-@app.post('/')
+#@app.post('/')
 
 
-async def root(file: UploadFile = File(...)):
-    return{"file_name":file.filename}
+#async def root(file: UploadFile = File(...)):
+#    return{"file_name":file.filename}
 
     
     
