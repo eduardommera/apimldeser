@@ -6,5 +6,5 @@ py_functions
 config
 pyodbc
 pywhatkit
-pickle
+pickle5
 json
