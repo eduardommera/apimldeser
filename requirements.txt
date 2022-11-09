@@ -7,4 +7,4 @@ config
 pyodbc
 pywhatkit
 pickle5
-sklearn
+python-multipart
