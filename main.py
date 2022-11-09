@@ -91,3 +91,11 @@ def deser_pred(input_parameters :model_input):
         return 'el alumno no se titula'
     else:
         return 'el alumno se titula'
+      
+      
+ @app.post('/')
+
+
+async def root(file: UploadFile = File(...)):
+    return{"file_name":file.filename}
+
