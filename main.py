@@ -61,21 +61,13 @@ def upload(background_tasks: BackgroundTasks, file: UploadFile = File(...)):
     csvReader = csv.DictReader(codecs.iterdecode(file.file, 'latin-1'))
     background_tasks.add_task(file.file.close)
     #return list(csvReader)
-    
-
-def deser_pred(input_parameters :model_input):
+    input_parameters :model_input
     input_data = input_parameters.json()
-    input_dictionary = json.loads(input_data)
-    
-        
+    input_dictionary = json.loads(input_data)    
     input_list =[file]
-    
-    
     prediccion = deser_model.predict([input_list])
-    
-  
     prediccion.to_csv("submission.csv", index = False)
- 
+    return {"prueba": prediccion}
  
 
 
