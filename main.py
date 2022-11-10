@@ -21,37 +21,11 @@ import codecs
 
 app = FastAPI()
 
-class model_input(BaseModel):
-    d_asignatura :int
-    estado :int
-    e_calificacion :int
-    nota :int
-    genero :int
-    edad :int
-    financiamiento :int
-    trabaja :int
-    region :int
-    nacionalidad :int
-    nepadre :int
-    nemadre :int
-    nem :int
-    rprocedencia :int
-    recidencia :int
-    aextra :int
-    rreprobados :int
-    hijos :int
-    ecivil :int
-    apoderado :int
-    hermanos :int
-    horario :int
-
 #class file_input(BaseModel):
         
 deser_model = pickle.load(open('modelo_desercion.sav','rb'))
 
 @app.post('/csv')
-
-
 async def root(file: UploadFile = File(...)):
     return{"file_name":file.filename}
 
@@ -60,13 +34,8 @@ async def root(file: UploadFile = File(...)):
 def upload( file: UploadFile = File(...)):
     csvReader = csv.DictReader(codecs.iterdecode(file.file, 'latin-1'))
   
-    #return list(csvReader)
-    input_parameters =list(csvReader)
-    input_data = input_parameters.json()
-    input_dictionary = json.loads(input_data)    
+    return list(csvReader)
 
-    prediccion = deser_model.predict([input_list])
-    return {"prueba": prediccion}
  
 
 
