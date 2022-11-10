@@ -12,6 +12,9 @@ import pickle
 import json
 import pandas as pd
 
+from fastapi.responses import StreamingResponse
+import io
+
 import csv
 import codecs
 
@@ -73,9 +76,24 @@ def deser_pred(input_parameters :model_input):
     
     prediccion = deser_model.predict([input_list])
     
+ 
 
+@app.get("/get_csv")
+async def get_csv():
+    
+       df =  prediccion
+    
+       stream = io.StringIO()
+    
+       df.to_csv(stream, index = False)
+    
+       response = StreamingResponse(iter([stream.getvalue()]),
+                            media_type="text/csv"
+       )
+    
+       response.headers["Content-Disposition"] = "attachment; filename=export.csv"
 
-
+       return response
 
 
 # deser_model.predict(list(csvReader))
