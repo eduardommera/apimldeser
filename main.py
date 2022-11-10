@@ -57,9 +57,9 @@ async def root(file: UploadFile = File(...)):
 
 
 @app.post("/upload")
-def upload(background_tasks: BackgroundTasks, file: UploadFile = File(...)):
+def upload( file: UploadFile = File(...)):
     csvReader = csv.DictReader(codecs.iterdecode(file.file, 'latin-1'))
-    background_tasks.add_task(file.file.close)
+  
     #return list(csvReader)
     input_parameters :model_input
     input_data = input_parameters.json()
