@@ -38,6 +38,49 @@ def upload( file: UploadFile = File(...)):
 
  
 
+@app.post("/upload2")
+def upload( file: UploadFile = File(...)):
+    csvReader = csv.DictReader(codecs.iterdecode(file.file, 'latin-1'))
+  
+    #return list(csvReader)
+    input_parameters =list(csvReader)
+    input_data = input_parameters.json()
+    input_dictionary = json.loads(input_data)    
+    
+    asig = input_dictionary['d_asignatura']
+    est = input_dictionary['estado']
+    califi = input_dictionary['e_calificacion']
+    grade = input_dictionary['nota']
+    gend = input_dictionary['genero']
+    age = input_dictionary['edad']
+    finan = input_dictionary['financiamiento']
+    work = input_dictionary['trabaja']
+    reg = input_dictionary['region']
+    nacio = input_dictionary['nacionalidad']
+    nepa = input_dictionary['nepadre']
+    nema = input_dictionary['nemadre']
+    nemscore = input_dictionary['nem']
+    rproce = input_dictionary['rprocedencia']
+    reci = input_dictionary['recidencia']
+    actextra = input_dictionary['aextra']
+    rreprob = input_dictionary['rreprobados']
+    hijo = input_dictionary['hijos']
+    ecivi = input_dictionary['ecivil']
+    apode = input_dictionary['apoderado']
+    herma = input_dictionary['hermanos']
+    hora = input_dictionary['horario']
+    
+    
+    input_list =[asig, est, califi, grade, gend, age, finan, work, reg, nacio, nepa, nema, nemscore, 
+                 rproce, reci, actextra, rreprob, hijo, ecivi, apode, herma, hora]
+    
+    
+    prediccion = deser_model.predict([input_list])
+    
+    
+    return list(prediccion)
+
+
 
 # deser_model.predict(list(csvReader))
 
