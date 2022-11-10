@@ -73,11 +73,9 @@ def deser_pred(input_parameters :model_input):
     
     prediccion = deser_model.predict([input_list])
     
-    
-    df =  prediccion
-    df.to_csv("submission.csv", index = False)
+  
+    prediccion.to_csv("submission.csv", index = False)
  
-print (df)
  
 
 
