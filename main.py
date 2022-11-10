@@ -75,25 +75,20 @@ def deser_pred(input_parameters :model_input):
     
     
     prediccion = deser_model.predict([input_list])
-    
+    df =  prediccion
  
+    stream = io.StringIO()
+ 
+    df.to_csv(stream, index = False)
+ 
+    response = StreamingResponse(iter([stream.getvalue()]),
+                         media_type="text/csv"
+    )
+ 
+    response.headers["Content-Disposition"] = "attachment; filename=export.csv"
 
-@app.get("/get_csv")
-async def get_csv():
-    
-       df =  prediccion
-    
-       stream = io.StringIO()
-    
-       df.to_csv(stream, index = False)
-    
-       response = StreamingResponse(iter([stream.getvalue()]),
-                            media_type="text/csv"
-       )
-    
-       response.headers["Content-Disposition"] = "attachment; filename=export.csv"
-
-       return response
+    return response
+ 
 
 
 # deser_model.predict(list(csvReader))
