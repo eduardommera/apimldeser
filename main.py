@@ -46,10 +46,7 @@ class model_input(BaseModel):
     horario :int
 
 #class file_input(BaseModel):
-    
-    
-    
-    
+        
 deser_model = pickle.load(open('modelo_desercion.sav','rb'))
 
 @app.post('/csv')
@@ -77,17 +74,7 @@ def deser_pred(input_parameters :model_input):
     prediccion = deser_model.predict([input_list])
     df =  prediccion
  
-    stream = io.StringIO()
- 
-    df.to_csv(stream, index = False)
- 
-    response = StreamingResponse(iter([stream.getvalue()]),
-                         media_type="text/csv"
-    )
- 
-    response.headers["Content-Disposition"] = "attachment; filename=export.csv"
-
-    return response
+print (df)
  
 
 
